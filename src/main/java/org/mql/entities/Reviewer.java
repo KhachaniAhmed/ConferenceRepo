@@ -9,7 +9,5 @@ import javax.persistence.Id;
 @Entity
 @DiscriminatorValue("REVIEWER")
 public class Reviewer extends User {
-	
-	
 
 }
