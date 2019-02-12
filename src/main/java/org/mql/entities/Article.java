@@ -26,6 +26,9 @@ public class Article {
 	private Author author;
 	@OneToOne
 	private Presentation presentation;
+	@ManyToOne
+	private Domain domain;
+	
 
 
 }
