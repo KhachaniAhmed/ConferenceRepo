@@ -16,8 +16,49 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @DiscriminatorValue("AUTHOR")
+@Data
 public class Author extends User {
+	private String mail;
 	@OneToMany(mappedBy = "author")
 	private List<Article> articles;
+
+	public Author() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Author(Long id, String userName, String password, Role role) {
+		super(id, userName, password, role);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Author(Long id, String userName, String password, Role role, String mail, List<Article> articles) {
+		super(id, userName, password, role);
+		this.mail = mail;
+		this.articles = articles;
+	}
+
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+	public List<Article> getArticles() {
+		return articles;
+	}
+
+	public void setArticles(List<Article> articles) {
+		this.articles = articles;
+	}
+
+	@Override
+	public String toString() {
+		return "Author [mail=" + mail + ", articles=" + articles + ", getMail()=" + getMail() + ", getArticles()="
+				+ getArticles() + ", getId()=" + getId() + ", getUserName()=" + getUserName() + ", getPassword()="
+				+ getPassword() + ", getRole()=" + getRole();
+	}
 
 }
