@@ -1,4 +1,4 @@
-package exceptions;
+package org.mql.exceptions;
 
 public class FileStorageException extends RuntimeException{
 	

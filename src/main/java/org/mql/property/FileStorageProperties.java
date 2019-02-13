@@ -1,4 +1,4 @@
-package property;
+package org.mql.property;
 
 
 import org.springframework.boot.context.properties.ConfigurationProperties;

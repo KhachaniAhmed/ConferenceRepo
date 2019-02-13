@@ -1,16 +1,15 @@
-package service;
+package org.mql.metier;
 
 
+import org.mql.exceptions.FileNotFoundException;
+import org.mql.exceptions.FileStorageException;
+import org.mql.property.FileStorageProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-
-import exceptions.FileNotFoundException;
-import exceptions.FileStorageException;
-import property.FileStorageProperties;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
