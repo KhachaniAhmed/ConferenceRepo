@@ -1,4 +1,4 @@
-package controller;
+package org.mql.services;
 
 import org.mql.dao.ArticleRepository;
 import org.mql.dao.FileRepository;
