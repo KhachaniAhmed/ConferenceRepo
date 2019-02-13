@@ -24,9 +24,9 @@ import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
-public class FileController {
+public class FileService {
 
-	private static final Logger logger = LoggerFactory.getLogger(FileController.class);
+	private static final Logger logger = LoggerFactory.getLogger(FileService.class);
 
 	@Autowired
 	private FileStorageService fileStorageService;
