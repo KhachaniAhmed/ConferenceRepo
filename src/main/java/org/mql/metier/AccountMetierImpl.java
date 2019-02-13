@@ -48,7 +48,7 @@ public class AccountMetierImpl implements IAccountMetier {
 		System.out.println(userApp.toString());
 		if (!userApp.getRole().equals(null)) {
 			userApp.setRole(role);
-			exist = false;
+			exist = false;			
 		}
 		return exist;
 	}
