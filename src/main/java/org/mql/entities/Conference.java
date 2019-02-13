@@ -26,7 +26,9 @@ public class Conference {
 	@ManyToOne
 	private Keynote keynote;
 	private String nom;
-//	private String nomConference;
+//	private String nom;
+
+	//private String nomConference;
 //	private String titrePresentation;
 //	private int nombreEquipe;
 //	@Temporal(TemporalType.DATE)
