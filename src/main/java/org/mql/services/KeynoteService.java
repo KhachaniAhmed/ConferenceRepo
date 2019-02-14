@@ -1,4 +1,4 @@
-package org.mql.service;
+package org.mql.services;
 
 public class KeynoteService {
 

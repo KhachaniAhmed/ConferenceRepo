@@ -1,4 +1,4 @@
-package org.mql.service;
+package org.mql.services;
 
 import org.springframework.web.bind.annotation.RestController;
 
