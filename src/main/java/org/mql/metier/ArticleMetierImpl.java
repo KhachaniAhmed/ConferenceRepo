@@ -31,4 +31,9 @@ public class ArticleMetierImpl implements IArticleMetier {
 		return articleRepository.save(article);
 	}
 
+	@Override
+	public void reviewArticle(Article article) {
+		articleRepository.save(article);
+	}
+
 }
