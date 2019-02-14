@@ -27,13 +27,13 @@ public class Author extends User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Author(Long id, String userName, String password, Role role) {
-		super(id, userName, password, role);
+	public Author(Long id, String username, String password, Role role) {
+		super(id, username, password, role);
 		// TODO Auto-generated constructor stub
 	}
 
-	public Author(Long id, String userName, String password, Role role, String mail, List<Article> articles) {
-		super(id, userName, password, role);
+	public Author(Long id, String username, String password, Role role, String mail, List<Article> articles) {
+		super(id, username, password, role);
 		this.mail = mail;
 		this.articles = articles;
 	}
@@ -57,7 +57,7 @@ public class Author extends User {
 	@Override
 	public String toString() {
 		return "Author [mail=" + mail + ", articles=" + articles + ", getMail()=" + getMail() + ", getArticles()="
-				+ getArticles() + ", getId()=" + getId() + ", getUserName()=" + getUserName() + ", getPassword()="
+				+ getArticles() + ", getId()=" + getId() + ", getUserName()=" + getUsername() + ", getPassword()="
 				+ getPassword() + ", getRole()=" + getRole();
 	}
 
