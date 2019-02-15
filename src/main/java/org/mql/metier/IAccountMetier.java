@@ -7,5 +7,5 @@ public interface IAccountMetier {
 	public User saveUser(User user);
 	public Role saveRole(Role role);
 	public User findUserByUsername(String userName);
-	public boolean addRoleToUser(String userName, String role);
+	public void addRoleToUser(String userName, String role);
 }
