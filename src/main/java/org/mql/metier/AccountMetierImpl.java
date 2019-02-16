@@ -7,14 +7,15 @@ import org.mql.dao.UserRepository;
 import org.mql.entities.Role;
 import org.mql.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 @Transactional
 public class AccountMetierImpl implements IAccountMetier {
-//	@Autowired
-//	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
@@ -22,8 +23,8 @@ public class AccountMetierImpl implements IAccountMetier {
 
 	@Override
 	public User saveUser(User user) {
-//		String hashPwd = bCryptPasswordEncoder.encode(user.getPassword());
-//		user.setPassword(hashPwd);
+		String hashPwd = bCryptPasswordEncoder.encode(user.getPassword());
+		user.setPassword(hashPwd);
 		return userRepository.save(user);
 	}
 
@@ -34,23 +35,26 @@ public class AccountMetierImpl implements IAccountMetier {
 
 	@Override
 	public User findUserByUsername(String userName) {
-		User user = userRepository.findByUserName(userName);
-		return null;
+		User user = userRepository.findByUsername(userName);
+		return user;
 	}
 
 	@Override
-	public boolean addRoleToUser(String userName, String roleName) {
+	public void addRoleToUser(String userName, String roleName) {
 		boolean exist = true;
 		Role role = roleRepository.findByRoleName(roleName);
-		User userApp = userRepository.findByUserName(userName);
+		System.out.println(role.toString());
+		User userApp = userRepository.findByUsername(userName);
+		System.out.println(userApp.toString());
 		System.out.println("*****************************************");
 		System.out.println(role.toString());
 		System.out.println(userApp.toString());
-		if (!userApp.getRole().equals(null)) {
+//		if (!(userApp.getRole() == null)) {
 			userApp.setRole(role);
-			exist = false;			
-		}
-		return exist;
+//			exist = false;
+//		}
+		userRepository.save(userApp);
+//		return exist;
 	}
 
 }
