@@ -16,4 +16,6 @@ public interface IArticleMetier {
 
 	void reviewArticle(Article article);
 
+	List<Article> getAll();
+
 }

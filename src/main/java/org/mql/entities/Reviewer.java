@@ -19,8 +19,8 @@ public class Reviewer extends User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Reviewer(Long id, String userName, String password, Role role) {
-		super(id, userName, password, role);
+	public Reviewer(Long id, String username, String password, Role role) {
+		super(id, username, password, role);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -39,7 +39,7 @@ public class Reviewer extends User {
 
 	@Override
 	public String toString() {
-		return "Reviewer [domain=" + domain + ", Id" + getId() + ", UserName" + getUserName()
+		return "Reviewer [domain=" + domain + ", Id" + getId() + ", UserName" + getUsername()
 				+ ", Password" + getPassword() + ", Role" + getRole() + "]";
 	}
 

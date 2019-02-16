@@ -38,4 +38,9 @@ public class ArticleMetierImpl implements IArticleMetier {
 		articleRepository.save(article);
 	}
 
+	@Override
+	public List<Article> getAll() {
+		return articleRepository.findAll();
+	}
+
 }
