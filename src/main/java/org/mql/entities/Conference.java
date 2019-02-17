@@ -29,11 +29,11 @@ public class Conference {
 //	private String nom;
 
 	//private String nomConference;
-//	private String titrePresentation;
-//	private int nombreEquipe;
-//	@Temporal(TemporalType.DATE)
-//	private Date dateConference;
-//	private String adresseConference;
-//	private String detail;
+	private String titrePresentation;
+	private int nombreEquipe;
+	@Temporal(TemporalType.DATE)
+	private Date dateConference;
+	private String adresseConference;
+	private String detail;
 
 }
