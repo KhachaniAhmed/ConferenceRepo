@@ -28,9 +28,9 @@ public class ConferenceProjetApplication implements CommandLineRunner {
 //		accountMetier.saveUser(new User(null, "user", "123", role2));
 //		accountMetier.addRoleToUser("admin", "ADMIN");
 //		accountMetier.addRoleToUser("user", "USER");
-		User user = accountMetier.findUserByUsername("admin");
-		System.out.println(user.toString());
-		
+//		User user = accountMetier.findUserByUsername("admin");
+//		System.out.println(user.toString());
+//		
 	}
 
 	@Bean
