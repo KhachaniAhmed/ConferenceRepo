@@ -1,9 +1,7 @@
 package org.mql.metier;
 
 import java.util.List;
-
 import javax.transaction.Transactional;
-
 import org.mql.dao.ArticleRepository;
 import org.mql.entities.Article;
 import org.springframework.beans.factory.annotation.Autowired;
