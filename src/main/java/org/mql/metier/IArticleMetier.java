@@ -14,4 +14,8 @@ public interface IArticleMetier {
 
 	Article save(Article article);
 
+	void reviewArticle(Article article);
+
+	List<Article> getAll();
+
 }
