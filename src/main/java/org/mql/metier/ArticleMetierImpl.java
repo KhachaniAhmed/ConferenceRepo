@@ -1,13 +1,14 @@
 package org.mql.metier;
 
 import java.util.List;
-
+import javax.transaction.Transactional;
 import org.mql.dao.ArticleRepository;
 import org.mql.entities.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 public class ArticleMetierImpl implements IArticleMetier {
 
 	@Autowired
