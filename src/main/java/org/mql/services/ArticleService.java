@@ -27,13 +27,14 @@ public class ArticleService {
 	@Autowired
 	private FileRepository fileRepository;
 	
-	@GetMapping(value="articles")
+	@GetMapping(value = "articles")
 	public List<Article> getAll(){
+		System.err.println("debujxhvjeuydguing");
 		return articleMetier.getAll();
 	}
 	@GetMapping(value = "articles/domain/{id}")
-	public List<Article> getAllByDomainId(@RequestParam Long id){
-		return articleMetier.getAllByDomainId(id);
+	public List<Article> getAllByDomaineId(@RequestParam Long id){
+		return articleMetier.getAllByDomaineId(id);
 	}
 	@GetMapping(value = "articles/{id}")
 	public Article getOne(@PathVariable Long id) {
@@ -50,8 +51,9 @@ public class ArticleService {
 		return fileRepository.findByArticleId(id);
 	}
 
-	@PostMapping(value="articles")
+	@PostMapping
 	public Article create(@RequestBody Article article) {
+		System.out.println(article);
 		return articleMetier.save(article);
 	}
 

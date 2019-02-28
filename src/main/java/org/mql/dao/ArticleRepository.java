@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ArticleRepository extends JpaRepository<Article, Long> {
 
-	List<Article> findByDomainId(Long id);
+	List<Article> findByDomaineId(Long id);
 }

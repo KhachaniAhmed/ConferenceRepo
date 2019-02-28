@@ -15,8 +15,8 @@ public class ArticleMetierImpl implements IArticleMetier {
 	private ArticleRepository articleRepository;
 
 	@Override
-	public List<Article> getAllByDomainId(Long id) {
-		return articleRepository.findByDomainId(id);
+	public List<Article> getAllByDomaineId(Long id) {
+		return articleRepository.findByDomaineId(id);
 	}
 
 	@Override

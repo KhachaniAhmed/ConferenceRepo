@@ -6,7 +6,7 @@ import org.mql.entities.Article;
 
 public interface IArticleMetier {
 
-	List<Article> getAllByDomainId(Long id);
+	List<Article> getAllByDomaineId(Long id);
 
 	void deleteById(Long id);
 
