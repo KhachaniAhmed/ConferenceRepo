@@ -44,14 +44,14 @@ public class ConferenceProjetApplication implements CommandLineRunner {
 		accountMetier.addRoleToUser("admin", "ADMIN");
 		accountMetier.addRoleToUser("user", "USER");
 		User user = accountMetier.findUserByUsername("admin");
-//		System.out.println(user.toString());
-//		Stream.of("technologie", "science", "art").forEach(d -> {
-//			Domaine domaine = domaineMetier.create(new Domaine(null, d));
-//            domaines.add(domaine);
-//		});
-//		domaines.forEach(d->{
-//			reviewerRepository.save(new Reviewer(null, user1.getUsername()+'h', user1.getPassword(), role1, d));
-//		}); 
+		System.out.println(user.toString());
+		Stream.of("technologie", "science", "art").forEach(d -> {
+			Domaine domaine = domaineMetier.create(new Domaine(null, d));
+            domaines.add(domaine);
+		});
+		domaines.forEach(d->{
+			reviewerRepository.save(new Reviewer(null, null, null, role1, d));
+		}); 
 		
 		
 	}
