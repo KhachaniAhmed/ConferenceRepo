@@ -1,9 +1,11 @@
 package org.mql.metier;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.mql.dao.ArticleRepository;
 import org.mql.entities.Article;
+import org.mql.entities.View;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +44,21 @@ public class ArticleMetierImpl implements IArticleMetier {
 	@Override
 	public List<Article> getAll() {
 		return articleRepository.findAll();
+	}
+
+	@Override
+	public List<Article> articleAccepted() {
+		List<Article> articles = new ArrayList<Article>();
+		this.articleRepository.findAll().forEach(r -> {
+			List<View> views = new ArrayList<View>();
+			r.getViews().forEach(v -> {
+				if (v.getView().equals("accepted"))
+					views.add(v);
+			});
+			if (views.size() >= 2)
+				articles.add(r);
+		});
+		return articles;
 	}
 
 }

@@ -18,4 +18,6 @@ public interface IArticleMetier {
 
 	List<Article> getAll();
 
+	List<Article> articleAccepted();
+
 }

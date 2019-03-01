@@ -6,5 +6,6 @@ import org.mql.entities.Domaine;
 
 public interface IDomaineMetier {
 	List<Domaine> getAll();
+	Domaine create(Domaine domaine);
 
 }

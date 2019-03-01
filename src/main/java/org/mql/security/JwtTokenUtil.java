@@ -15,7 +15,6 @@ public class JwtTokenUtil implements Serializable{
 				.setSigningKey(SecurityConstants.SECRET)
 				.parseClaimsJws(jwtToken.replace(SecurityConstants.TOKEN_PREFIX, ""))
 				.getBody();
-		
 		String username = claims.getSubject();
 		
 		return username;
