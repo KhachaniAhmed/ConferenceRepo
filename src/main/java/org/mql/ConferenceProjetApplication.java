@@ -22,9 +22,9 @@ public class ConferenceProjetApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-//		Role role1 = accountMetier.saveRole(new Role(null, "ADMIN"));
-//		Role role2 = accountMetier.saveRole(new Role(null, "USER"));
-//		accountMetier.saveUser(new User(null, "admin", "123", role1));
+		Role role1 = accountMetier.saveRole(new Role(null, "ADMIN"));
+		Role role2 = accountMetier.saveRole(new Role(null, "USER"));
+	//	accountMetier.saveUser(new User(null, "admin", "123", role1));
 //		accountMetier.saveUser(new User(null, "user", "123", role2));
 //		accountMetier.addRoleToUser("admin", "ADMIN");
 //		accountMetier.addRoleToUser("user", "USER");
