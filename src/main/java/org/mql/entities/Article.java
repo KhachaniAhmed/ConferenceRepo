@@ -39,8 +39,6 @@ public class Article {
 	private Presentation presentation;
 	@ManyToOne
 	private Domaine domaine;
-	@OneToMany(mappedBy="article",fetch=FetchType.EAGER)
-	private List<View> views;
 
 
 }

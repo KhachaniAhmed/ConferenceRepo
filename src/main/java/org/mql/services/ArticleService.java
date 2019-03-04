@@ -1,10 +1,11 @@
-package org.mql.services;
+ package org.mql.services;
 
 import java.util.List;
 import org.mql.dao.FileRepository;
 import org.mql.entities.Article;
 import org.mql.entities.UploadFileResponse;
 import org.mql.metier.IArticleMetier;
+import org.mql.metier.IViewMetier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
