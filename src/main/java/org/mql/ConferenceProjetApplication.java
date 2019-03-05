@@ -39,8 +39,7 @@ public class ConferenceProjetApplication implements CommandLineRunner {
 	private IArticleMetier articleMetier;
 	@Autowired
 	private IChairMetier chairMetier;
-	
-	
+
 	private List<Reviewer> reviewers = new ArrayList<Reviewer>();
 	private List<Domaine> domaines = new ArrayList<Domaine>();
 
@@ -69,16 +68,11 @@ public class ConferenceProjetApplication implements CommandLineRunner {
 //		iViewMetier.save(new View(null, "accepted",reviewerRepository.getOne(new Long(3)) , articleMetier.getOne(new Long(1))));
 //		
 //		iViewMetier.save(new View(null, "accepted",reviewerRepository.getOne(new Long(3)) , articleMetier.getOne(new Long(2))));
-	
-		articleMetier.articleAccepted().forEach(a->{
+
+		articleMetier.articleAccepted().forEach(a -> {
 			System.out.println(a.toString());
-			
+
 		});
-		
-		
-////		
-		
-		
 	}
 
 	@Bean
