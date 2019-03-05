@@ -53,7 +53,6 @@ public class ConferenceProjetApplication implements CommandLineRunner {
 //		Role role1 = accountMetier.saveRole(new Role(null, "ADMIN"));
 //		Role role2 = accountMetier.saveRole(new Role(null, "USER"));
 //		chairMetier.save(new Chair(null, "ali", "AitBassou", role2));	
-		
 //		User user1 = accountMetier.saveUser(new User(null, "admin", "123", role1));
 //		User user2 = accountMetier.saveUser(new User(null, "user", "123", role2));
 //		accountMetier.addRoleToUser("admin", "ADMIN");
@@ -70,11 +69,10 @@ public class ConferenceProjetApplication implements CommandLineRunner {
 //		iViewMetier.save(new View(null, "accepted",reviewerRepository.getOne(new Long(3)) , articleMetier.getOne(new Long(1))));
 //		
 //		iViewMetier.save(new View(null, "accepted",reviewerRepository.getOne(new Long(3)) , articleMetier.getOne(new Long(2))));
-//		
-//		
-//		
+	
 		articleMetier.articleAccepted().forEach(a->{
 			System.out.println(a.toString());
+			
 		});
 		
 		
