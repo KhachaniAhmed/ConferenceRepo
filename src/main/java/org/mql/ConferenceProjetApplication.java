@@ -8,6 +8,7 @@ import org.mql.dao.ReviewerRepository;
 import org.mql.entities.Article;
 import org.mql.entities.Chair;
 import org.mql.entities.Domaine;
+import org.mql.entities.Jury;
 import org.mql.entities.Reviewer;
 import org.mql.entities.Role;
 import org.mql.entities.User;
@@ -16,6 +17,8 @@ import org.mql.metier.IAccountMetier;
 import org.mql.metier.IArticleMetier;
 import org.mql.metier.IChairMetier;
 import org.mql.metier.IDomaineMetier;
+import org.mql.metier.IJuryMetier;
+import org.mql.metier.IPresentationMetier;
 import org.mql.metier.IViewMetier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -39,6 +42,8 @@ public class ConferenceProjetApplication implements CommandLineRunner {
 	private IArticleMetier articleMetier;
 	@Autowired
 	private IChairMetier chairMetier;
+	@Autowired
+	private IJuryMetier iJuryMetier;
 
 	private List<Reviewer> reviewers = new ArrayList<Reviewer>();
 	private List<Domaine> domaines = new ArrayList<Domaine>();
@@ -68,11 +73,14 @@ public class ConferenceProjetApplication implements CommandLineRunner {
 //		iViewMetier.save(new View(null, "accepted",reviewerRepository.getOne(new Long(3)) , articleMetier.getOne(new Long(1))));
 //		
 //		iViewMetier.save(new View(null, "accepted",reviewerRepository.getOne(new Long(3)) , articleMetier.getOne(new Long(2))));
-
-		articleMetier.articleAccepted().forEach(a -> {
-			System.out.println(a.toString());
-
-		});
+//		articleMetier.articleAccepted().forEach(a -> {
+//			System.out.println(a.toString());
+//
+//		});
+//		iJuryMetier.save(new Jury(null, "ahmed", "khachani", "ahmed@gmail.com"));
+//		iJuryMetier.save(new Jury(null, "jamal", "zaydan", "jamal@gmail.com"));
+//		iJuryMetier.save(new Jury(null, "ali", "aitbaou", "ali@gmail.com"));
+//		iJuryMetier.save(new Jury(null, "hisham", "agadd hisham", "hisham@gmail.com"));
 	}
 
 	@Bean

@@ -39,6 +39,7 @@ public class AffectationService {
 
 	@PostMapping(value = "affectations")
 	public Affectation save(@RequestBody Affectation affectation) {
+	   System.err.println("debog");
 		return affectationMetier.save(affectation);
 	}
 
