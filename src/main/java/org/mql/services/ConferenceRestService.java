@@ -54,9 +54,15 @@ public boolean deletContact(@PathVariable Long id){
 }
 //@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 @PostMapping(value="/conference/put/{id}")
-public Conference saveContact(@PathVariable Long id,@RequestBody Conference contact){
+public Conference saveConfer(@PathVariable Long id,@RequestBody Conference contact){
 	contact.setId(id);
 	return conferenceRestService.save(contact);
 }
+
+	@PutMapping(value = "/conference/put/{id}")
+	public Conference saveConf(@PathVariable Long id, @RequestBody Conference contact) {
+		contact.setId(id);
+		return conferenceRestService.save(contact);
+	}
 
 }

@@ -38,6 +38,11 @@ public class AccountMetierImpl implements IAccountMetier {
 		User user = userRepository.findByUsername(userName);
 		return user;
 	}
+	@Override
+	public Role findRoleByRolename(String rolename) {
+		Role role= roleRepository.findByRoleName(rolename);
+		return role;
+	}
 
 	@Override
 	public void addRoleToUser(String userName, String roleName) {
@@ -50,7 +55,7 @@ public class AccountMetierImpl implements IAccountMetier {
 		System.out.println(role.toString());
 		System.out.println(userApp.toString());
 //		if (!(userApp.getRole() == null)) {
-			userApp.setRole(role);
+		userApp.setRole(role);
 //			exist = false;
 //		}
 		userRepository.save(userApp);
