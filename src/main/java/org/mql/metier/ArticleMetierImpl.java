@@ -53,10 +53,10 @@ public class ArticleMetierImpl implements IArticleMetier {
 		List<Article> articlesAccepted = new ArrayList<Article>();
 		List<View> views = viewMetier.getViewsAccepted();
 		for (int i = 0; i < views.size() - 1; i++) {
-			if (views.get(i).getArticle().equals(views.get(i + 1).getArticle())) {
+			//if (views.get(i).getArticle().equals(views.get(i + 1).getArticle())) {
 				if (!articlesAccepted.contains(views.get(i).getArticle()))
 					articlesAccepted.add(views.get(i).getArticle());
-			}
+			//}
 		}
 		return articlesAccepted;
 	}

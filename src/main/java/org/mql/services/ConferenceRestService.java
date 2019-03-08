@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 @RequestMapping("/conferences")
@@ -34,11 +35,13 @@ public Conference getConference(@PathVariable Long id){
 	return conferenceRestService.findById(id).get();
 }
 
-@GetMapping(value="/chercherConference")
+
+
+@RequestMapping(value="/chercher")
 public Page<Conference> chercher
         (@RequestParam(name = "page", defaultValue = "0") int p,
     			@RequestParam(name = "size", defaultValue = "6") int s,
-    			@RequestParam(name = "motCle", defaultValue = "") String mc) {
+    			@RequestParam(name = "mc", defaultValue = "") String mc) {
    return conferenceRestService.chercher("%" + mc + "%", new PageRequest(p, s));	
 }
 

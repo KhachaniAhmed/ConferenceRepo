@@ -25,7 +25,6 @@ public class PresentationService {
 		System.err.println("debujxhvjeuydguing");
 		return presentationMetier.getAll();
 	}
-
 	@GetMapping(value = "presentations/{id}")
 	public Presentation getOne(@PathVariable Long id) {
 		return presentationMetier.getOne(id);
@@ -45,4 +44,5 @@ public class PresentationService {
 	public Presentation edit(@RequestBody Presentation presentation) {
 		return presentationMetier.save(presentation);
 	}
+	
 }
