@@ -24,4 +24,9 @@ public class ReviewerMetier implements IReviewerMetier {
 		return viewRepository.findByArticleId(articleId);
 	}
 
+	@Override
+	public View save(View view) {
+		return viewRepository.save(view);
+	}
+
 }

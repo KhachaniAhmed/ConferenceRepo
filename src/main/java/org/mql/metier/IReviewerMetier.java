@@ -10,4 +10,6 @@ public interface IReviewerMetier {
 	
 	List<View> getAllByArticleId(Long articleId);
 
+	View save(View view);
+
 }
