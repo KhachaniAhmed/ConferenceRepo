@@ -43,7 +43,9 @@ public class ConferenceProjetApplication implements CommandLineRunner {
 	private IChairMetier chairMetier;
 	@Autowired
 	private IJuryMetier iJuryMetier;
-
+	@Autowired
+	private IPresentationMetier  iPresentationMetier;
+	
 	private List<Reviewer> reviewers = new ArrayList<Reviewer>();
 	private List<Domaine> domaines = new ArrayList<Domaine>();
 
@@ -71,18 +73,18 @@ public class ConferenceProjetApplication implements CommandLineRunner {
 //		domaines.forEach(d->{
 //			reviewerRepository.save(new Reviewer(null, null, null, role1, d));
 //		}); 
-		iViewMetier.save(new View(null, "accepted",reviewerRepository.getOne(new Long(5)) , articleMetier.getOne(new Long(1))));
-		
-		iViewMetier.save(new View(null, "accepted",reviewerRepository.getOne(new Long(4)) , articleMetier.getOne(new Long(2))));
+//		iViewMetier.save(new View(null, "accepted",reviewerRepository.getOne(new Long(5)) , articleMetier.getOne(new Long(1))));
+//		
+//		iViewMetier.save(new View(null, "accepted",reviewerRepository.getOne(new Long(4)) , articleMetier.getOne(new Long(2))));
 		articleMetier.articleAccepted().forEach(a -> {
 			System.out.println(a.toString());
 
 		});
-		
 //		iJuryMetier.save(new Jury(null, "ahmed", "khachani", "ahmed@gmail.com"));
 //		iJuryMetier.save(new Jury(null, "jamal", "zaydan", "jamal@gmail.com"));
 //		iJuryMetier.save(new Jury(null, "ali", "aitbaou", "ali@gmail.com"));
 //		iJuryMetier.save(new Jury(null, "hisham", "agadd hisham", "hisham@gmail.com"));
+		iPresentationMetier.getAllPresentationNotAffected().forEach(System.out::println);
 	}
 
 	@Bean

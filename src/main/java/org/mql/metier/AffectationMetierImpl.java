@@ -1,11 +1,13 @@
 package org.mql.metier;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.mql.dao.AffectationRepository;
 import org.mql.entities.Affectation;
+import org.mql.entities.Presentation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +39,16 @@ public class AffectationMetierImpl implements IAffectationMetier {
 	public void deleteByID(Long id) {
 		// TODO Auto-generated method stub
 		affectationRepository.deleteById(id);
+	}
+
+	@Override
+	public List<Presentation> getAllPreseantionAfffected() {
+		List<Presentation> presentations = new ArrayList<Presentation>();
+		affectationRepository.FindAllPreseanttionAffected().forEach(presentation->{
+			if(!presentations.contains(presentation))
+				presentations.add(presentation);
+		});
+		return presentations;
 	}
 
 }

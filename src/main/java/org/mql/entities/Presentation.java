@@ -28,7 +28,7 @@ public class Presentation {
 	private Conference conference;
 	@ManyToOne
 	private Chair chair;
-
+    
 	
 	
 }
