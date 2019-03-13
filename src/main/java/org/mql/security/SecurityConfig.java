@@ -34,10 +34,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
+	//	http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+	//	.and()
+	//		.authorizeRequests()
+//			.antMatchers("/login/**", "/Client/register", "/Admin/getOrganisms", "/Admin/getSousCategories").permitAll()
+//			.antMatchers("/Admin/**").hasAuthority("ROLE_ADMIN")
+//			.antMatchers("/conferences/**").permitAll()
+//			.antMatchers("/article/**").permitAll()
+//			.antMatchers("/login/**").permitAll()
+//			.antMatchers("/register/**").permitAll()
+
+//			.anyRequest().authenticated()
+//		.and()
+//			.addFilter(new JWTAuthenticationFilter(authenticationManager()))
+//			.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-				.antMatchers("/register/**").permitAll().antMatchers("/login/**").permitAll().antMatchers("/client/**").permitAll()
+				.antMatchers("/register/**").permitAll().antMatchers("/login/**").permitAll()
 				.antMatchers("/conferences/**").hasAuthority("ADMIN").antMatchers("/articles/**").hasAuthority("ADMIN")
-				.antMatchers("/home/**").hasAuthority("ADMIN");
+				.antMatchers("/presentations/**").hasAuthority("ADMIN").antMatchers("/affectations/**")
+				.hasAuthority("ADMIN").antMatchers("/chairs/**").hasAnyAuthority("ADMIN","USER").antMatchers("/jurys/**")
+				.hasAuthority("ADMIN").antMatchers("/home/**").hasAuthority("ADMIN");
 		http.authorizeRequests().anyRequest().authenticated().and()
 				.addFilter(new JWTAuthenticationFilter(authenticationManager()))
 				.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 @RequestMapping("/conferences")
@@ -25,36 +26,44 @@ public class ConferenceRestService {
 	@Autowired
 	private ConferenceRepository conferenceRestService;
 
-	@GetMapping("/All_Conference")
-	public List<Conference> getAllConference() {
-		return conferenceRestService.findAll();
-	}
+@GetMapping("/All_Conference")
+public List<Conference> getAllConference(){
+	return conferenceRestService.findAll();
+}
+@GetMapping(value="/conference/{id}")
+public Conference getConference(@PathVariable Long id){
+	return conferenceRestService.findById(id).get();
+}
 
-	@GetMapping(value = "/conference/{id}")
-	public Conference getConference(@PathVariable Long id) {
-		return conferenceRestService.findById(id).get();
-	}
 
-	@GetMapping(value = "/chercherConference")
-	public Page<Conference> chercher(@RequestParam(name = "page", defaultValue = "0") int p,
-			@RequestParam(name = "size", defaultValue = "6") int s,
-			@RequestParam(name = "motCle", defaultValue = "") String mc) {
-		return conferenceRestService.chercher("%" + mc + "%", new PageRequest(p, s));
-	}
 
-	@PostMapping(value = "/conference/add")
-	public Conference saveContact(@RequestBody Conference contact) {
-		return conferenceRestService.save(contact);
-	}
+@RequestMapping(value="/chercher")
+public Page<Conference> chercher
+        (@RequestParam(name = "page", defaultValue = "0") int p,
+    			@RequestParam(name = "size", defaultValue = "6") int s,
+    			@RequestParam(name = "mc", defaultValue = "") String mc) {
+   return conferenceRestService.chercher("%" + mc + "%", new PageRequest(p, s));	
+}
 
-	@GetMapping(value = "/conference/delete/{id}")
-	public boolean deletContact(@PathVariable Long id) {
-		conferenceRestService.deleteById(id);
-		return true;
-	}
+@PostMapping(value="/conference/add")
+public Conference saveContact(@RequestBody Conference contact){
+	return conferenceRestService.save(contact);
+}
+
+@GetMapping(value="/conference/delete/{id}")
+public boolean deletContact(@PathVariable Long id){
+	 conferenceRestService.deleteById(id);
+	 return true;
+}
+//@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
+@PostMapping(value="/conference/put/{id}")
+public Conference saveConfer(@PathVariable Long id,@RequestBody Conference contact){
+	contact.setId(id);
+	return conferenceRestService.save(contact);
+}
 
 	@PutMapping(value = "/conference/put/{id}")
-	public Conference saveContact(@PathVariable Long id, @RequestBody Conference contact) {
+	public Conference saveConf(@PathVariable Long id, @RequestBody Conference contact) {
 		contact.setId(id);
 		return conferenceRestService.save(contact);
 	}
