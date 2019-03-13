@@ -24,5 +24,7 @@ public class Payment {
 	private Author author;
 	@ManyToOne
 	private Conference conference;
+	private String chargeAmount;
+	private String nonce;
 
 }
