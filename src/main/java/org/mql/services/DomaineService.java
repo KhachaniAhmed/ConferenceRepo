@@ -18,7 +18,6 @@ public class DomaineService {
 
 	@GetMapping(value = "domaines")
 	public List<Domaine> getAll() {
-		System.err.println("debuguing");
 		return domaineMetier.getAll();
 	}
 
