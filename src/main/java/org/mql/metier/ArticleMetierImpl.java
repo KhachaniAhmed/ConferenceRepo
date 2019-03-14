@@ -17,6 +17,8 @@ public class ArticleMetierImpl implements IArticleMetier {
 	private ArticleRepository articleRepository;
 	@Autowired
 	private IViewMetier viewMetier;
+	@Autowired
+	private IPresentationMetier iPresentationMetier; 
 
 	@Override
 	public List<Article> getAllByDomaineId(Long id) {
@@ -54,7 +56,7 @@ public class ArticleMetierImpl implements IArticleMetier {
 		List<View> views = viewMetier.getViewsAccepted();
 		for (int i = 0; i < views.size() - 1; i++) {
 			//if (views.get(i).getArticle().equals(views.get(i + 1).getArticle())) {
-				if (!articlesAccepted.contains(views.get(i).getArticle()))
+				if (!articlesAccepted.contains(views.get(i).getArticle()) && !iPresentationMetier.getAllArticleAffected().contains(views.get(i).getArticle()))
 					articlesAccepted.add(views.get(i).getArticle());
 			//}
 		}

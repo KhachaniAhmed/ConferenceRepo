@@ -25,6 +25,11 @@ public class PresentationService {
 		System.err.println("debujxhvjeuydguing");
 		return presentationMetier.getAll();
 	}
+	@GetMapping(value = "presentations/notAffected")
+	public List<Presentation> getAllPresenttaionNotAffected() {
+		System.err.println("debujxhvjeuydguing");
+		return presentationMetier.getAllPresentationNotAffected();
+	}
 	@GetMapping(value = "presentations/{id}")
 	public Presentation getOne(@PathVariable Long id) {
 		return presentationMetier.getOne(id);
