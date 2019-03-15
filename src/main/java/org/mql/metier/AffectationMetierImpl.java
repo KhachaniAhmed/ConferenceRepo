@@ -45,7 +45,6 @@ public class AffectationMetierImpl implements IAffectationMetier {
 	public List<Presentation> getAllPreseantionAfffected() {
 		List<Presentation> presentations = new ArrayList<Presentation>();
 		affectationRepository.FindAllPreseanttionAffected().forEach(presentation->{
-			if(!presentations.contains(presentation))
 				presentations.add(presentation);
 		});
 		return presentations;
