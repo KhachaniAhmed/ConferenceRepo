@@ -13,16 +13,21 @@ import org.springframework.stereotype.Service;
 @Transactional
 public class ArticleMetierImpl implements IArticleMetier {
 
+	public static final String ACCEPTED = "ACCEPTED";
+	public static final String REJECTED = "REJECTED";
+	public static final String IN_IVALUATION = "IN_IVALUATION";
 	@Autowired
 	private ArticleRepository articleRepository;
-	@Autowired
-	private IViewMetier viewMetier;
-	@Autowired
-	private IPresentationMetier iPresentationMetier; 
-
+	public List<Article> getAll() {
+		return articleRepository.findByStatusLike(IN_IVALUATION);
+	}
 	@Override
-	public List<Article> getAllByDomaineId(Long id) {
-		return articleRepository.findByDomaineId(id);
+	public List<Article> getAllAccepted() {
+		return articleRepository.findByStatusLike(ACCEPTED);
+	}
+	@Override
+	public List<Article> getAllRejected() {
+		return articleRepository.findByStatusLike(REJECTED);
 	}
 
 	@Override
@@ -46,20 +51,16 @@ public class ArticleMetierImpl implements IArticleMetier {
 	}
 
 	@Override
-	public List<Article> getAll() {
-		return articleRepository.findAll();
-	}
-
-	@Override
 	public List<Article> articleAccepted() {
-		List<Article> articlesAccepted = new ArrayList<Article>();
-		List<View> views = viewMetier.getViewsAccepted();
-		for (int i = 0; i < views.size() - 1; i++) {
-			//if (views.get(i).getArticle().equals(views.get(i + 1).getArticle())) {
-				if (!articlesAccepted.contains(views.get(i).getArticle()) && !iPresentationMetier.getAllArticleAffected().contains(views.get(i).getArticle()))
-					articlesAccepted.add(views.get(i).getArticle());
-			//}
-		}
-		return articlesAccepted;
+//		List<Article> articlesAccepted = new ArrayList<Article>();
+//		List<View> views = viewMetier.getViewsAccepted();
+//		for (int i = 0; i < views.size() - 1; i++) {
+//			//if (views.get(i).getArticle().equals(views.get(i + 1).getArticle())) {
+//				if (!articlesAccepted.contains(views.get(i).getArticle()) && !iPresentationMetier.getAllArticleAffected().contains(views.get(i).getArticle()))
+//					articlesAccepted.add(views.get(i).getArticle());
+//			//}
+//		}
+//		return articlesAccepted;
+		return articleRepository.findByPresentationIdAndStatusLike(null, ACCEPTED);
 	}
 }

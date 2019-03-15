@@ -29,6 +29,11 @@ public class ViewMetierImpl implements IViewMetier {
 		return viewRepository.save(view);
 	}
 
+	@Override
+	public List<View> findByArticleIdAndRateGreaterThan(Article article, int rate) {
+		return viewRepository.findByArticleIdAndRateGreaterThan(article.getId(),rate);
+	}
+
 
 	@Override
 	public List<View> getViewsAccepted() {
