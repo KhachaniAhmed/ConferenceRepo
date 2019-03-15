@@ -18,11 +18,13 @@ public class Payment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String Type;
-	private float price;
 	@ManyToOne
-	private Author author;
-	@ManyToOne
-	private Conference conference;
+	private Article article;
+//	@ManyToOne
+//	private Author author;
+//	@ManyToOne
+//	private Conference conference;
+	private String chargeAmount;
+	private String nonce;
 
 }

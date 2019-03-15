@@ -18,6 +18,7 @@ public class View {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private int rate;
 	private String view;
 	@ManyToOne
 	private Reviewer reviewer;

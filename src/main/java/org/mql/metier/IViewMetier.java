@@ -6,8 +6,11 @@ import org.mql.entities.Article;
 import org.mql.entities.View;
 
 public interface IViewMetier {
-	List<View> getAll();
+	
+	List<View> getAllByArticleId(Long articleId);
+
 	List<View> getViewsAccepted();
+
 	View save(View view);
 
 }

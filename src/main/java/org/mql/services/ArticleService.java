@@ -29,7 +29,6 @@ public class ArticleService {
 
 	@GetMapping(value = "articles")
 	public List<Article> getAll() {
-		System.err.println("debujxhvjeuydguing");
 		return articleMetier.getAll();
 	}
 
@@ -60,7 +59,6 @@ public class ArticleService {
 
 	@PostMapping
 	public Article create(@RequestBody Article article) {
-		System.out.println(article);
 		return articleMetier.save(article);
 	}
 
