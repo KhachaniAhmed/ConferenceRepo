@@ -2,9 +2,8 @@ package org.mql.services;
 
 import java.util.List;
 
-import org.mql.dao.ReviewerRepository;
 import org.mql.entities.Article;
-import org.mql.entities.Chair;
+import org.mql.entities.Reviewer;
 import org.mql.entities.View;
 import org.mql.metier.IReviewerMetier;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +19,5 @@ public class ReviewerService {
 	
 	@Autowired
 	private IReviewerMetier reviewerMetier;
-	@Autowired
-	private ReviewerRepository ReviewerRepository;
-	
-	@GetMapping(value = "reviews/{articleId}")
-	public List<View> getAll(@PathVariable Long articleId) {
-		return reviewerMetier.getAllByArticleId(articleId);
-	}
-	
-
-
 	
 }

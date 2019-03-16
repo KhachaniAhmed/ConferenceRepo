@@ -2,7 +2,9 @@ package org.mql.metier;
 
 import java.util.List;
 
+import org.mql.dao.ReviewerRepository;
 import org.mql.dao.ViewRepository;
+import org.mql.entities.Reviewer;
 import org.mql.entities.View;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,17 +13,11 @@ import org.springframework.stereotype.Service;
 public class ReviewerMetier implements IReviewerMetier {
 
 	@Autowired
-	ViewRepository viewRepository;
-	
+	ReviewerRepository reviewerRepository;
 	@Override
-	public void reviewArticle(Long reviewerId, Long articleId) {
-		// TODO Auto-generated method stub
-		
+	public Reviewer findByUsername(String username) {
+		return reviewerRepository.findByUsername(username);
 	}
 
-	@Override
-	public List<View> getAllByArticleId(Long articleId) {
-		return viewRepository.findByArticleId(articleId);
-	}
 
 }
