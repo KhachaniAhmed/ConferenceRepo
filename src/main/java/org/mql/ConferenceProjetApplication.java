@@ -53,8 +53,8 @@ public class ConferenceProjetApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Role role1 = accountMetier.saveRole(new Role(null, "ADMIN"));
-		Role role2 = accountMetier.saveRole(new Role(null, "USER"));
+//		Role role1 = accountMetier.saveRole(new Role(null, "ADMIN"));
+//		Role role2 = accountMetier.saveRole(new Role(null, "USER"));
 //		chairMetier.save(new Chair(null, "ali", "AitBassou", role2));	
 //		chairMetier.save(new Chair(null, "hisham", "al agaad", role2));	
 //		chairMetier.save(new Chair(null, "ahmed", "khachani", role2));	
@@ -71,14 +71,14 @@ public class ConferenceProjetApplication implements CommandLineRunner {
 //		domaines.forEach(d->{
 //			reviewerRepository.save(new Reviewer(null, null, null, role1, d));
 //		}); 
-		iViewMetier.save(new View(null, "accepted",reviewerRepository.getOne(new Long(5)) , articleMetier.getOne(new Long(1))));
-		
-		iViewMetier.save(new View(null, "accepted",reviewerRepository.getOne(new Long(4)) , articleMetier.getOne(new Long(2))));
-		articleMetier.articleAccepted().forEach(a -> {
-			System.out.println(a.toString());
-
-		});
-		
+//		iViewMetier.save(new View(null, "accepted",reviewerRepository.getOne(new Long(5)) , articleMetier.getOne(new Long(1))));
+//		
+//		iViewMetier.save(new View(null, "accepted",reviewerRepository.getOne(new Long(4)) , articleMetier.getOne(new Long(2))));
+//		articleMetier.articleAccepted().forEach(a -> {
+//			System.out.println(a.toString());
+//
+//		});
+//		
 //		iJuryMetier.save(new Jury(null, "ahmed", "khachani", "ahmed@gmail.com"));
 //		iJuryMetier.save(new Jury(null, "jamal", "zaydan", "jamal@gmail.com"));
 //		iJuryMetier.save(new Jury(null, "ali", "aitbaou", "ali@gmail.com"));
