@@ -24,7 +24,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		org.mql.entities.User user = iAccountMetier.findUserByUsername(username);
 		if (user == null)
 			throw new UsernameNotFoundException(username);
-		System.out.println(user.toString());
+//		System.out.println(user.toString());
 		Collection<GrantedAuthority> authorities = new ArrayList<>();
 		authorities.add(new SimpleGrantedAuthority(user.getRole().getRoleName()));
 		System.out

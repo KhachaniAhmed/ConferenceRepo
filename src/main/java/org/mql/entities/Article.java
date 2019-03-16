@@ -33,6 +33,7 @@ public class Article {
 	private String title;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date postedAt;
+	private String status = "IN_IVALUATION";
 	@ManyToOne
 	private Author author;
 	@OneToOne

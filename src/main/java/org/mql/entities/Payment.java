@@ -20,10 +20,6 @@ public class Payment {
 	private Long id;
 	@ManyToOne
 	private Article article;
-//	@ManyToOne
-//	private Author author;
-//	@ManyToOne
-//	private Conference conference;
 	private String chargeAmount;
 	private String nonce;
 
