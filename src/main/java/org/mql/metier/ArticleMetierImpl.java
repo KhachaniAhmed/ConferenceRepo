@@ -2,10 +2,17 @@ package org.mql.metier;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import org.mql.dao.ArticleRepository;
+import org.mql.dao.UserRepository;
 import org.mql.entities.Article;
+import org.mql.entities.Reviewer;
+import org.mql.entities.User;
 import org.mql.entities.View;
+import org.mql.security.JwtTokenUtil;
+import org.mql.security.SecurityConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +25,25 @@ public class ArticleMetierImpl implements IArticleMetier {
 	public static final String IN_IVALUATION = "IN_IVALUATION";
 	@Autowired
 	private ArticleRepository articleRepository;
+	@Autowired
+	private UserRepository userRepository;
+	@Autowired
+	private JwtTokenUtil jwtTokenUtil;
+	
+	public List<Article> getAllByUsername(HttpServletRequest request) {
+		String jwtToken = request.getHeader(SecurityConstants.HEADER_STRING);
+		String role = jwtTokenUtil.getUserRoleFromToken(jwtToken);
+		User user = userRepository.findByUsername(jwtTokenUtil.getUsernameFromToken(jwtToken));
+		if (role.equals("AUTHOR")) {
+			return articleRepository.findByAuthorId(user.getId());
+		}else if (role.equals("REVIEWER")) {
+			Reviewer reviewer= (Reviewer) user;
+			return articleRepository.findByDomaineId(reviewer.getDomain().getId());
+		}
+		return articleRepository.findAll();
+		
+	}
+	
 	public List<Article> getAll() {
 		return articleRepository.findAll();
 	}

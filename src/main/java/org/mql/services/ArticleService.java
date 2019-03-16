@@ -2,6 +2,8 @@ package org.mql.services;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.mql.dao.FileRepository;
 import org.mql.entities.Article;
 import org.mql.entities.UploadFileResponse;
@@ -29,8 +31,8 @@ public class ArticleService {
     private FileRepository fileRepository;
 
     @GetMapping(value = "articles")
-    public List<Article> getAll() {
-        return articleMetier.getAll();
+    public List<Article> getAll(HttpServletRequest request) {
+        return articleMetier.getAllByUsername(request);
     }
 
     @GetMapping(value = "articles/accepted")

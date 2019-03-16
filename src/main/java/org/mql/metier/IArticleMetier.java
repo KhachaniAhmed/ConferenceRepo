@@ -2,11 +2,14 @@ package org.mql.metier;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.mql.entities.Article;
 
 public interface IArticleMetier {
 
 	List<Article> getAll();
+	List<Article> getAllByUsername(HttpServletRequest request);
 
 	void deleteById(Long id);
 

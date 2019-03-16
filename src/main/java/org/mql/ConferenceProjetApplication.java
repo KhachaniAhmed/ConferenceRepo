@@ -1,27 +1,4 @@
 package org.mql;
-<<<<<<< HEAD
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Stream;
-
-import org.mql.dao.ReviewerRepository;
-import org.mql.entities.Article;
-import org.mql.entities.Chair;
-import org.mql.entities.Domaine;
-import org.mql.entities.Jury;
-import org.mql.entities.Reviewer;
-import org.mql.entities.Role;
-import org.mql.entities.User;
-import org.mql.entities.View;
-import org.mql.metier.IAccountMetier;
-import org.mql.metier.IArticleMetier;
-import org.mql.metier.IChairMetier;
-import org.mql.metier.IDomaineMetier;
-import org.mql.metier.IJuryMetier;
-import org.mql.metier.IPresentationMetier;
-import org.mql.metier.IViewMetier;
-import org.springframework.beans.factory.annotation.Autowired;
-=======
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,7 +11,6 @@ import org.mql.entities.*;
 import org.mql.metier.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
->>>>>>> 341e28f9a6cdec746df4943d72b90f3b9748faac
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
