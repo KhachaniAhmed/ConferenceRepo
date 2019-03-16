@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -46,6 +47,7 @@ public class Author extends User {
 		this.mail = mail;
 	}
 
+	@JsonIgnore
 	public List<Article> getArticles() {
 		return articles;
 	}

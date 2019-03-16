@@ -49,8 +49,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //			.addFilter(new JWTAuthenticationFilter(authenticationManager()))
 //			.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-				.antMatchers("/register/**").permitAll().antMatchers("/login/**").permitAll().antMatchers("/client/**").permitAll()
-				.antMatchers("/conferences/**").hasAuthority("ADMIN").antMatchers("/articles/**").hasAuthority("ADMIN")
+				.antMatchers("/register/**").permitAll().antMatchers("/login/**").permitAll().antMatchers("/client/**").hasAuthority("AUTHOR")
+				.antMatchers("/conferences/**").hasAuthority("ADMIN").antMatchers("/articles/**").hasAnyAuthority("ADMIN","AUTHOR","REVIEWER")
 				.antMatchers("/presentations/**").hasAuthority("ADMIN").antMatchers("/affectations/**")
 				.hasAuthority("ADMIN").antMatchers("/chairs/**").hasAnyAuthority("ADMIN","USER").antMatchers("/jurys/**")
 				.hasAuthority("ADMIN").antMatchers("/home/**").hasAuthority("ADMIN");

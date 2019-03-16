@@ -19,7 +19,7 @@ public class ArticleMetierImpl implements IArticleMetier {
 	@Autowired
 	private ArticleRepository articleRepository;
 	public List<Article> getAll() {
-		return articleRepository.findByStatusLike(IN_IVALUATION);
+		return articleRepository.findAll();
 	}
 	@Override
 	public List<Article> getAllAccepted() {
