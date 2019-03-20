@@ -44,17 +44,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //			.antMatchers("/article/**").permitAll()
 //			.antMatchers("/login/**").permitAll()
 //			.antMatchers("/register/**").permitAll()
-
 //			.anyRequest().authenticated()
 //		.and()
 //			.addFilter(new JWTAuthenticationFilter(authenticationManager()))
 //			.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-				.antMatchers("/register/**").permitAll().antMatchers("/login/**").permitAll().antMatchers("/client/**").hasAuthority("AUTHOR")
-				.antMatchers("/conferences/**").hasAuthority("ADMIN").antMatchers("/articles/**").hasAnyAuthority("ADMIN","AUTHOR","REVIEWER")
-				.antMatchers("/presentations/**").hasAuthority("ADMIN").antMatchers("/affectations/**")
-				.hasAuthority("ADMIN").antMatchers("/chairs/**").hasAnyAuthority("ADMIN","USER").antMatchers("/jurys/**")
-				.hasAuthority("ADMIN").antMatchers("/home/**").hasAuthority("ADMIN");
+				.antMatchers("/register/**").permitAll().antMatchers("/login/**").permitAll().
+				antMatchers("/client/**").hasAuthority("AUTHOR")
+				.antMatchers("/conferences/**").hasAuthority("ADMIN").
+				antMatchers("/articles/**").hasAnyAuthority("ADMIN","AUTHOR","REVIEWER")
+				.antMatchers("/presentations/**").hasAuthority("ADMIN").
+				antMatchers("/affectations/**").hasAuthority("ADMIN")
+				.antMatchers("/chairs/**").hasAnyAuthority("ADMIN","USER").
+				antMatchers("/jurys/**").hasAuthority("ADMIN").
+				antMatchers("/home/**").hasAuthority("ADMIN");
 		http.authorizeRequests().anyRequest().authenticated().and()
 				.addFilter(new JWTAuthenticationFilter(authenticationManager()))
 				.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
