@@ -35,7 +35,6 @@ public class PaymentService {
     public ResponseEntity<Object> processTransaction(
             @RequestBody Payment payment) {
 
-        System.out.println(payment.toString());
         Transaction transaction = null;
         BigDecimal decimalAmount = null;
         try {

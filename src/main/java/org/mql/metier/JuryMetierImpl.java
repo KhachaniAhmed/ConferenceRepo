@@ -23,19 +23,16 @@ public class JuryMetierImpl implements IJuryMetier {
 
 	@Override
 	public Jury getOne(Long id) {
-		// TODO Auto-generated method stub
 		return juryRepository.getOne(id);
 	}
 
 	@Override
 	public Jury save(Jury jury) {
-		// TODO Auto-generated method stub
 		return juryRepository.save(jury);
 	}
 
 	@Override
 	public void deleteById(Long id) {
-		// TODO Auto-generated method stub
 		juryRepository.deleteById(id);
 	}
 

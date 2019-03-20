@@ -66,13 +66,13 @@ public class ArticleService {
     }
 
     @PostMapping
-    public Article create(@RequestBody Article article) {
-        return articleMetier.save(article);
+    public Article create(HttpServletRequest request, @RequestBody Article article) {
+        return articleMetier.save(request, article);
     }
 
     @PutMapping(value = "articles")
     public Article update(@RequestBody Article article) {
-        return articleMetier.save(article);
+        return articleMetier.update(article);
     }
 
     @PutMapping("/review")

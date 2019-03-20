@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.mql.dao.ArticleRepository;
 import org.mql.dao.UserRepository;
 import org.mql.entities.Article;
+import org.mql.entities.Author;
 import org.mql.entities.Reviewer;
 import org.mql.entities.User;
 import org.mql.entities.View;
@@ -26,17 +27,14 @@ public class ArticleMetierImpl implements IArticleMetier {
 	@Autowired
 	private ArticleRepository articleRepository;
 	@Autowired
-	private UserRepository userRepository;
-	@Autowired
-	private JwtTokenUtil jwtTokenUtil;
+	private IAccountMetier accountMetier;
+
 	
 	public List<Article> getAllByUsername(HttpServletRequest request) {
-		String jwtToken = request.getHeader(SecurityConstants.HEADER_STRING);
-		String role = jwtTokenUtil.getUserRoleFromToken(jwtToken);
-		User user = userRepository.findByUsername(jwtTokenUtil.getUsernameFromToken(jwtToken));
-		if (role.equals("AUTHOR")) {
+		User user = accountMetier.getCurrentUser(request);
+		if (user.getRole().getRoleName().equals("AUTHOR")) {
 			return articleRepository.findByAuthorId(user.getId());
-		}else if (role.equals("REVIEWER")) {
+		}else if (user.getRole().getRoleName().equals("REVIEWER")) {
 			Reviewer reviewer= (Reviewer) user;
 			return articleRepository.findByDomaineId(reviewer.getDomain().getId());
 		}
@@ -67,7 +65,17 @@ public class ArticleMetierImpl implements IArticleMetier {
 	}
 
 	@Override
-	public Article save(Article article) {
+	public Article save(HttpServletRequest request, Article article) {
+		User user = accountMetier.getCurrentUser(request);
+		if (!user.getRole().getRoleName().equals("AUTHOR")) {
+			throw new RuntimeException("User has no authority too create a new article");
+		}
+		article.setAuthor((Author)user);
+		return articleRepository.save(article);
+	}
+	
+	@Override
+	public Article update(Article article) {
 		return articleRepository.save(article);
 	}
 
@@ -78,15 +86,7 @@ public class ArticleMetierImpl implements IArticleMetier {
 
 	@Override
 	public List<Article> articleAccepted() {
-//		List<Article> articlesAccepted = new ArrayList<Article>();
-//		List<View> views = viewMetier.getViewsAccepted();
-//		for (int i = 0; i < views.size() - 1; i++) {
-//			//if (views.get(i).getArticle().equals(views.get(i + 1).getArticle())) {
-//				if (!articlesAccepted.contains(views.get(i).getArticle()) && !iPresentationMetier.getAllArticleAffected().contains(views.get(i).getArticle()))
-//					articlesAccepted.add(views.get(i).getArticle());
-//			//}
-//		}
-//		return articlesAccepted;
 		return articleRepository.findByPresentationIdAndStatusLike(null, ACCEPTED);
 	}
+	
 }

@@ -16,7 +16,9 @@ public interface IArticleMetier {
 
 	Article getOne(Long id);
 
-	Article save(Article article);
+	Article save(HttpServletRequest request, Article article);
+	
+	Article update(Article article);
 
 	void reviewArticle(Article article);
 
@@ -25,5 +27,6 @@ public interface IArticleMetier {
 	List<Article> getAllAccepted();
 
 	List<Article> getAllRejected();
+	
 
 }

@@ -39,7 +39,7 @@ public class EmailSenderAspect {
             if (reviews.stream().filter(x -> x.getRate() >= MIN_RATE).collect(Collectors.toList()).size() >= MIN_FAVORABLE_RATE_TOBE_ACCEPTED)
                 article.setStatus(ACCEPTED);
             else article.setStatus(REJECTED);
-            iArticleMetier.save(article);
+            iArticleMetier.update(article);
             sendMail(article);
         }
     }

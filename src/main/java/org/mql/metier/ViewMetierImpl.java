@@ -37,7 +37,6 @@ public class ViewMetierImpl implements IViewMetier {
 
 	@Override
 	public List<View> getViewsAccepted() {
-		// TODO Auto-generated method stub
 		return viewRepository.findAllViewsAccepted();
 	}
 

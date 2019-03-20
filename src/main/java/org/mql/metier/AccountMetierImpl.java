@@ -1,11 +1,14 @@
 package org.mql.metier;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 
 import org.mql.dao.RoleRepository;
 import org.mql.dao.UserRepository;
 import org.mql.entities.Role;
 import org.mql.entities.User;
+import org.mql.security.JwtTokenUtil;
+import org.mql.security.SecurityConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,6 +23,8 @@ public class AccountMetierImpl implements IAccountMetier {
 	private UserRepository userRepository;
 	@Autowired
 	private RoleRepository roleRepository;
+	@Autowired
+	private JwtTokenUtil jwtTokenUtil;
 
 	@Override
 	public User saveUser(User user) {
@@ -48,18 +53,22 @@ public class AccountMetierImpl implements IAccountMetier {
 	public void addRoleToUser(String userName, String roleName) {
 		boolean exist = true;
 		Role role = roleRepository.findByRoleName(roleName);
-		System.out.println(role.toString());
 		User userApp = userRepository.findByUsername(userName);
-		System.out.println(userApp.toString());
-		System.out.println("*****************************************");
-		System.out.println(role.toString());
-		System.out.println(userApp.toString());
 //		if (!(userApp.getRole() == null)) {
 		userApp.setRole(role);
 //			exist = false;
 //		}
 		userRepository.save(userApp);
 //		return exist;
+	}
+	@Override
+	public User getCurrentUser(HttpServletRequest request) {
+		String jwtToken = request.getHeader(SecurityConstants.HEADER_STRING);
+		User user = userRepository.findByUsername(jwtTokenUtil.getUsernameFromToken(jwtToken));
+		if (user == null) {
+			throw new RuntimeException("No Authenticated User Found !");
+		}
+		return user;
 	}
 
 }
