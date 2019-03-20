@@ -2,11 +2,15 @@ package org.mql.metier;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.mql.entities.Article;
 
 public interface IArticleMetier {
 
-	List<Article> getAllByDomaineId(Long id);
+	List<Article> getAll();
+
+	List<Article> getAllByUsername(HttpServletRequest request);
 
 	void deleteById(Long id);
 
@@ -16,8 +20,10 @@ public interface IArticleMetier {
 
 	void reviewArticle(Article article);
 
-	List<Article> getAll();
-
 	List<Article> articleAccepted();
+
+	List<Article> getAllAccepted();
+
+	List<Article> getAllRejected();
 
 }

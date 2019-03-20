@@ -33,7 +33,7 @@ public class AccountService {
 			throw new RuntimeException("this user already exist ");
 		appuser.setUsername(userForm.getUsername());
 		appuser.setPassword(userForm.getPassword());
-		appuser.setRole(iAccountMetie.findRoleByRolename("USER"));
+		appuser.setRole(iAccountMetie.findRoleByRolename("AUTHOR"));
 		iAccountMetie.saveUser(appuser);
 		return appuser;
 	}

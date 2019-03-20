@@ -1,6 +1,9 @@
- package org.mql.services;
+package org.mql.services;
 
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.mql.dao.FileRepository;
 import org.mql.entities.Article;
 import org.mql.entities.UploadFileResponse;
@@ -22,56 +25,61 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ArticleService {
 
-	@Autowired
-	private IArticleMetier articleMetier;
-	@Autowired
-	private FileRepository fileRepository;
+    @Autowired
+    private IArticleMetier articleMetier;
+    @Autowired
+    private FileRepository fileRepository;
 
-	@GetMapping(value = "articles")
-	public List<Article> getAll() {
-		return articleMetier.getAll();
-	}
+    @GetMapping(value = "articles")
+    public List<Article> getAll(HttpServletRequest request) {
+        return articleMetier.getAllByUsername(request);
+    }
 
-	@GetMapping(value = "articles/accepted")
-	public List<Article> getAllAcepted() {
-		return articleMetier.articleAccepted();
-	}
+    @GetMapping(value = "articles/accepted")
+    public List<Article> getAllAcepted() {
+        return articleMetier.articleAccepted();
+    }
 
-	@GetMapping(value = "articles/domain/{id}")
-	public List<Article> getAllByDomaineId(@RequestParam Long id) {
-		return articleMetier.getAllByDomaineId(id);
-	}
+    @GetMapping(value = "articles/status/accepted")
+    public List<Article> getAllAccepted() {
+        return articleMetier.getAllAccepted();
+    }
 
-	@GetMapping(value = "articles/{id}")
-	public Article getOne(@PathVariable Long id) {
-		return articleMetier.getOne(id);
-	}
+    @GetMapping(value = "articles/status/rejected")
+    public List<Article> getAllRejected() {
+        return articleMetier.getAllRejected();
+    }
 
-	@DeleteMapping(value = "articles/{id}")
-	public void delete(@PathVariable Long id) {
-		articleMetier.deleteById(id);
-	}
+    @GetMapping(value = "articles/{id}")
+    public Article getOne(@PathVariable Long id) {
+        return articleMetier.getOne(id);
+    }
 
-	@GetMapping(value = "articles/{id}/files")
-	public List<UploadFileResponse> getFiles(@PathVariable Long id) {
-		return fileRepository.findByArticleId(id);
-	}
+    @DeleteMapping(value = "articles/{id}")
+    public void delete(@PathVariable Long id) {
+        articleMetier.deleteById(id);
+    }
 
-	@PostMapping
-	public Article create(@RequestBody Article article) {
-		return articleMetier.save(article);
-	}
+    @GetMapping(value = "articles/{id}/files")
+    public List<UploadFileResponse> getFiles(@PathVariable Long id) {
+        return fileRepository.findByArticleId(id);
+    }
 
-	@PutMapping(value = "articles")
-	public Article update(@RequestBody Article article) {
-		return articleMetier.save(article);
-	}
+    @PostMapping
+    public Article create(@RequestBody Article article) {
+        return articleMetier.save(article);
+    }
 
-	@PutMapping("/review")
-	public void reviewArticle(@RequestParam Long id, @RequestAttribute String review) {
-		Article article = articleMetier.getOne(id);
-		// article.setReview(review);
-		articleMetier.reviewArticle(article);
-	}
+    @PutMapping(value = "articles")
+    public Article update(@RequestBody Article article) {
+        return articleMetier.save(article);
+    }
+
+    @PutMapping("/review")
+    public void reviewArticle(@RequestParam Long id, @RequestAttribute String review) {
+        Article article = articleMetier.getOne(id);
+        // article.setReview(review);
+        articleMetier.reviewArticle(article);
+    }
 
 }

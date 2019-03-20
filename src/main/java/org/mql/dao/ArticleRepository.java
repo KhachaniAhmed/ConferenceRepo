@@ -7,5 +7,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ArticleRepository extends JpaRepository<Article, Long> {
 
-	List<Article> findByDomaineId(Long id);
+	List<Article> findByStatusLike(String status);
+
+	List<Article> findByPresentationIdAndStatusLike(Long presentationId, String status);
+	
+	List<Article> findByAuthorId(Long authorId);
+	List<Article> findByDomaineId(Long authorId);
 }
+	

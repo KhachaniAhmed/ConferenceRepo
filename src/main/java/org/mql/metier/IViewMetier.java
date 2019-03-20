@@ -13,4 +13,5 @@ public interface IViewMetier {
 
 	View save(View view);
 
+	List<View> findByArticleIdAndRateGreaterThan(Article article, int rate);
 }
