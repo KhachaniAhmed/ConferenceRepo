@@ -11,5 +11,6 @@ import org.springframework.data.jpa.repository.Query;
 public interface AffectationRepository extends JpaRepository<Affectation, Long> {
 	@Query("Select presentation  From Affectation  ")
 	public List<Presentation> FindAllPreseanttionAffected();
+	List<Affectation> findByPresentationId(Long presentationId);
 
 }

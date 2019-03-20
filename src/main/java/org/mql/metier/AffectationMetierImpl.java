@@ -19,25 +19,21 @@ public class AffectationMetierImpl implements IAffectationMetier {
 
 	@Override
 	public List<Affectation> getAll() {
-		// TODO Auto-generated method stub
 		return affectationRepository.findAll();
 	}
 
 	@Override
 	public Affectation save(Affectation affectation) {
-		// TODO Auto-generated method stub
 		return affectationRepository.save(affectation);
 	}
 
 	@Override
 	public Affectation getOne(Long id) {
-		// TODO Auto-generated method stub
 		return affectationRepository.getOne(id);
 	}
 
 	@Override
 	public void deleteByID(Long id) {
-		// TODO Auto-generated method stub
 		affectationRepository.deleteById(id);
 	}
 
@@ -48,6 +44,11 @@ public class AffectationMetierImpl implements IAffectationMetier {
 				presentations.add(presentation);
 		});
 		return presentations;
+	}
+
+	@Override
+	public List<Affectation> findByPresentation(Long presentationId) {
+		return affectationRepository.findByPresentationId(presentationId);
 	}
 
 }

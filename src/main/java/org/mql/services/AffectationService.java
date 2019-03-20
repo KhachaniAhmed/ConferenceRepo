@@ -26,7 +26,12 @@ public class AffectationService {
 	public List<Affectation> getAll() {
 		return affectationMetier.getAll();
 	}
-
+	
+	@GetMapping(value = "affectations/presentation/{idPresentation}")
+	public List<Affectation> findByPresentation(@PathVariable Long idPresentation) {
+		return affectationMetier.findByPresentation(idPresentation);
+	}
+	
 	@GetMapping(value = "affectations/{id}")
 	public Affectation getOne(@PathVariable Long id) {
 		return affectationMetier.getOne(id);
