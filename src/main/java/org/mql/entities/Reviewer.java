@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 @DiscriminatorValue("REVIEWER")
 public class Reviewer extends User {
 	@ManyToOne
-	private Domain domain;
+	private Domaine domain;
 	
 
 	public Reviewer() {
@@ -24,16 +24,16 @@ public class Reviewer extends User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Reviewer(Long id, String userName, String password, Role role, Domain domain) {
+	public Reviewer(Long id, String userName, String password, Role role, Domaine domain) {
 		super(id, userName, password, role);
 		this.domain = domain;
 	}
 
-	public Domain getDomain() {
+	public Domaine getDomain() {
 		return domain;
 	}
 
-	public void setDomain(Domain domain) {
+	public void setDomain(Domaine domain) {
 		this.domain = domain;
 	}
 
