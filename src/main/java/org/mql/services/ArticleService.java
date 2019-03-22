@@ -65,6 +65,14 @@ public class ArticleService {
         return fileRepository.findByArticleId(id);
     }
 
+    @GetMapping(value = "articles/{id}/image")
+    public UploadFileResponse getArticleImage(@PathVariable Long id) {
+        List<UploadFileResponse> images =fileRepository.findByArticleIdAndFileTypeContaining(id, "image");
+         if (!images.isEmpty()){
+             return images.get(0);
+         }
+    }
+
     @PostMapping
     public Article create(@RequestBody Article article) {
         return articleMetier.save(article);
