@@ -18,21 +18,25 @@ public class ViewMetierImpl implements IViewMetier {
 	@Autowired
 	private ViewRepository viewRepository;
 
+
 	@Override
-	public List<View> getAll() {
-		// TODO Auto-generated method stub
-		return viewRepository.findAll();
+	public List<View> getAllByArticleId(Long articleId) {
+		return viewRepository.findByArticleId(articleId);
 	}
 
 	@Override
 	public View save(View view) {
-		// TODO Auto-generated method stub
 		return viewRepository.save(view);
 	}
 
 	@Override
+	public List<View> findByArticleIdAndRateGreaterThan(Article article, int rate) {
+		return viewRepository.findByArticleIdAndRateGreaterThan(article.getId(),rate);
+	}
+
+
+	@Override
 	public List<View> getViewsAccepted() {
-		// TODO Auto-generated method stub
 		return viewRepository.findAllViewsAccepted();
 	}
 

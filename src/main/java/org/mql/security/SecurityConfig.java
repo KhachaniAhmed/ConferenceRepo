@@ -1,3 +1,4 @@
+
 package org.mql.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,45 +21,49 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @EnableWebSecurity
 @CrossOrigin(origins = "http://localhost:4200")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	@Autowired
-	private UserDetailsService userDetailsService;
+    @Autowired
+    private UserDetailsService userDetailsService;
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
-	}
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
+    }
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable();
-	//	http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-	//	.and()
-	//		.authorizeRequests()
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable();
+        //	http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        //	.and()
+        //		.authorizeRequests()
 //			.antMatchers("/login/**", "/Client/register", "/Admin/getOrganisms", "/Admin/getSousCategories").permitAll()
 //			.antMatchers("/Admin/**").hasAuthority("ROLE_ADMIN")
 //			.antMatchers("/conferences/**").permitAll()
 //			.antMatchers("/article/**").permitAll()
 //			.antMatchers("/login/**").permitAll()
 //			.antMatchers("/register/**").permitAll()
-
 //			.anyRequest().authenticated()
 //		.and()
 //			.addFilter(new JWTAuthenticationFilter(authenticationManager()))
 //			.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
-		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-				.antMatchers("/register/**").permitAll().antMatchers("/login/**").permitAll()
-				.antMatchers("/conferences/**").hasAuthority("ADMIN").antMatchers("/articles/**").hasAuthority("ADMIN")
-				.antMatchers("/presentations/**").hasAuthority("ADMIN").antMatchers("/affectations/**")
-				.hasAuthority("ADMIN").antMatchers("/chairs/**").hasAnyAuthority("ADMIN","USER").antMatchers("/jurys/**")
-				.hasAuthority("ADMIN").antMatchers("/home/**").hasAuthority("ADMIN")
-				.antMatchers("/article/**").hasAnyAuthority("AUTHOR","ADMIN");
-		http.authorizeRequests().anyRequest().authenticated().and()
-				.addFilter(new JWTAuthenticationFilter(authenticationManager()))
-				.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
-		
-	}
+
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
+                .antMatchers("/register/**").permitAll().antMatchers("/login/**").permitAll().
+                antMatchers("/client/**").permitAll()
+                .antMatchers("/conferences/**").hasAuthority("ADMIN").
+                antMatchers("/articles/**").hasAnyAuthority("ADMIN", "AUTHOR", "REVIEWER")
+                .antMatchers("/presentations/**").hasAnyAuthority("ADMIN","CHAIR").
+                antMatchers("/affectations/**").hasAuthority("ADMIN")
+                .antMatchers("/chairs/**").hasAnyAuthority("ADMIN", "USER").
+                antMatchers("/jurys/**").hasAuthority("ADMIN").
+                antMatchers("/home/**").hasAuthority("ADMIN")
+                .antMatchers("/downloadFile/**").permitAll();
+        http.authorizeRequests().anyRequest().authenticated().and()
+                .addFilter(new JWTAuthenticationFilter(authenticationManager()))
+                .addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+    }
 
 }
+

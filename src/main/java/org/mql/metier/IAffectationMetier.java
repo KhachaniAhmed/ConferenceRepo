@@ -6,6 +6,7 @@ import org.mql.entities.Affectation;
 import org.mql.entities.Presentation;
 
 public interface IAffectationMetier {
+	List<Affectation> findByPresentation(Long presentationId);
 	List<Affectation> getAll();
 	Affectation save(Affectation affectation);
 	Affectation getOne(Long id);

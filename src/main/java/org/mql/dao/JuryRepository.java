@@ -4,5 +4,6 @@ import org.mql.entities.Jury;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface JuryRepository extends JpaRepository<Jury, Long> {
+	public Jury findByfirstName(String firstName);
 
 }

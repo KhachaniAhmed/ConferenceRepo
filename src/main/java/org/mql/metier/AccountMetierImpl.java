@@ -1,11 +1,16 @@
 package org.mql.metier;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 
+import org.mql.dao.AuthorRepository;
 import org.mql.dao.RoleRepository;
 import org.mql.dao.UserRepository;
+import org.mql.entities.Author;
 import org.mql.entities.Role;
 import org.mql.entities.User;
+import org.mql.security.JwtTokenUtil;
+import org.mql.security.SecurityConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -17,15 +22,19 @@ public class AccountMetierImpl implements IAccountMetier {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	@Autowired
-	private UserRepository userRepository;
+	private AuthorRepository authorRepository;
 	@Autowired
 	private RoleRepository roleRepository;
+	@Autowired
+	private UserRepository userRepository;
+	@Autowired
+	private JwtTokenUtil jwtTokenUtil;
 
 	@Override
-	public User saveUser(User user) {
-		String hashPwd = bCryptPasswordEncoder.encode(user.getPassword());
-		user.setPassword(hashPwd);
-		return userRepository.save(user);
+	public Author saveUser(Author author) {
+		String hashPwd = bCryptPasswordEncoder.encode(author.getPassword());
+		author.setPassword(hashPwd);
+		return authorRepository.save(author);
 	}
 
 	@Override
@@ -48,18 +57,28 @@ public class AccountMetierImpl implements IAccountMetier {
 	public void addRoleToUser(String userName, String roleName) {
 		boolean exist = true;
 		Role role = roleRepository.findByRoleName(roleName);
-		System.out.println(role.toString());
-		User userApp = userRepository.findByUsername(userName);
-		System.out.println(userApp.toString());
-		System.out.println("*****************************************");
-		System.out.println(role.toString());
-		System.out.println(userApp.toString());
+		Author author = authorRepository.findByUsername(userName);
 //		if (!(userApp.getRole() == null)) {
-		userApp.setRole(role);
+		author.setRole(role);
 //			exist = false;
 //		}
-		userRepository.save(userApp);
+		authorRepository.save(author);
 //		return exist;
+	}
+	@Override
+	public User getCurrentUser(HttpServletRequest request) {
+		String jwtToken = request.getHeader(SecurityConstants.HEADER_STRING);
+		User user = userRepository.findByUsername(jwtTokenUtil.getUsernameFromToken(jwtToken));
+		if (user == null) {
+			throw new RuntimeException("No Authenticated User Found !");
+		}
+		return user;
+	}
+
+	@Override
+	public Author findAuthorByUsername(String userName) {
+		Author author = authorRepository.findByUsername(userName);
+		return author;
 	}
 
 }

@@ -2,6 +2,7 @@ package org.mql.services;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.mql.entities.Author;
 import org.mql.entities.User;
 import org.mql.metier.IAccountMetier;
 import org.mql.property.RegisterForm;
@@ -25,15 +26,15 @@ public class AccountService {
 	@PostMapping("/register")
 	public User register(@RequestBody RegisterForm userForm) {
 		System.out.println(userForm.toString());
-		User appuser = new User();
+		Author appuser = new Author();
 		if (!(userForm.getPassword().equals(userForm.getRepassword())))
 			throw new RuntimeException("you must confirmm your password");
-		User user = iAccountMetie.findUserByUsername(userForm.getUsername());
+		Author user = iAccountMetie.findAuthorByUsername(userForm.getUsername());
 		if (user != null)
 			throw new RuntimeException("this user already exist ");
 		appuser.setUsername(userForm.getUsername());
 		appuser.setPassword(userForm.getPassword());
-		appuser.setRole(iAccountMetie.findRoleByRolename("USER"));
+		appuser.setRole(iAccountMetie.findRoleByRolename("AUTHOR"));
 		iAccountMetie.saveUser(appuser);
 		return appuser;
 	}

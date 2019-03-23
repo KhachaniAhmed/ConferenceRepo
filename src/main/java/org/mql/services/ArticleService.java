@@ -1,6 +1,9 @@
- package org.mql.services;
+package org.mql.services;
 
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.mql.dao.FileRepository;
 import org.mql.entities.Article;
 import org.mql.entities.UploadFileResponse;
@@ -28,9 +31,8 @@ public class ArticleService {
 	private FileRepository fileRepository;
 
 	@GetMapping(value = "articles")
-	public List<Article> getAll() {
-		System.err.println("debujxhvjeuydguing");
-		return articleMetier.getAll();
+	public List<Article> getAll(HttpServletRequest request) {
+		return articleMetier.getAllByUsername(request);
 	}
 
 	@GetMapping(value = "articles/accepted")
@@ -38,9 +40,14 @@ public class ArticleService {
 		return articleMetier.articleAccepted();
 	}
 
-	@GetMapping(value = "articles/domain/{id}")
-	public List<Article> getAllByDomaineId(@RequestParam Long id) {
-		return articleMetier.getAllByDomaineId(id);
+	@GetMapping(value = "articles/status/accepted")
+	public List<Article> getAllAccepted() {
+		return articleMetier.getAllAccepted();
+	}
+
+	@GetMapping(value = "articles/status/rejected")
+	public List<Article> getAllRejected() {
+		return articleMetier.getAllRejected();
 	}
 
 	@GetMapping(value = "articles/{id}")
@@ -58,15 +65,23 @@ public class ArticleService {
 		return fileRepository.findByArticleId(id);
 	}
 
+	@GetMapping(value = "articles/{id}/image")
+	public UploadFileResponse getArticleImage(@PathVariable Long id) {
+		List<UploadFileResponse> images = fileRepository.findByArticleIdAndFileTypeContaining(id, "image");
+		if (!images.isEmpty()) {
+			return images.get(0);
+		}
+		return new UploadFileResponse();
+	}
+
 	@PostMapping
-	public Article create(@RequestBody Article article) {
-		System.out.println(article);
-		return articleMetier.save(article);
+	public Article create(HttpServletRequest request, @RequestBody Article article) {
+		return articleMetier.save(request, article);
 	}
 
 	@PutMapping(value = "articles")
 	public Article update(@RequestBody Article article) {
-		return articleMetier.save(article);
+		return articleMetier.update(article);
 	}
 
 	@PutMapping("/review")

@@ -2,7 +2,9 @@ package org.mql.services;
 
 import java.util.List;
 
+import org.mql.dao.ChairRepository;
 import org.mql.entities.Chair;
+import org.mql.entities.Conference;
 import org.mql.entities.Presentation;
 import org.mql.metier.ChairMetierImpl;
 import org.mql.metier.IChairMetier;
@@ -21,6 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class chairService {
 	@Autowired
 	private IChairMetier chairMetier;
+	@Autowired
+	private ChairRepository chairRepository; 
 	
 	@GetMapping(value = "chairs")
 	public List<Chair> getAll() {
@@ -46,6 +50,15 @@ public class chairService {
 	@PutMapping(value = "chairs")
 	public Chair edit(@RequestBody Chair chair) {
 		return chairMetier.save(chair);
+	}
+	@PutMapping(value = "/chair/put/{id}")
+	public Chair saveConf(@PathVariable Long id, @RequestBody Chair chair) {
+		chair.setId(id);
+		return chairRepository.save(chair);
+	}
+	@GetMapping(value="/chair/{id}")
+	public Chair getConference(@PathVariable Long id){
+		return chairRepository.getOne(id);
 	}
 
 }

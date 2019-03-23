@@ -22,12 +22,10 @@ public class PresentationService {
 
 	@GetMapping(value = "presentations")
 	public List<Presentation> getAll() {
-		System.err.println("debujxhvjeuydguing");
 		return presentationMetier.getAll();
 	}
 	@GetMapping(value = "presentations/notAffected")
 	public List<Presentation> getAllPresenttaionNotAffected() {
-		System.err.println("debujxhvjeuydguing");
 		return presentationMetier.getAllPresentationNotAffected();
 	}
 	@GetMapping(value = "presentations/{id}")
