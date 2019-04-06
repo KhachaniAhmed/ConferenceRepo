@@ -47,7 +47,7 @@ public class EmailSenderAspect {
     public void sendMail(Article article){
         Mail mail = new Mail();
 		//mail.setTo(article.getAuthor().getEmail());
-        mail.setTo("aitbassouali@gmail.com ");
+        mail.setTo("aitbassoualii@gmail.com ");
 		mail.setSubject("Votre article a été accepté");
 
 		Map<String, Object> model = new HashMap<String, Object>();
